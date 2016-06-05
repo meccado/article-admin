@@ -22,6 +22,23 @@ To register the Service Provider edit **config/app.php** file and add to provide
 
 ```
 
+Publish files with:
+
+```bash
+
+$ php artisan vendor:publish  --force
+
+```
+
+Migrate & Seed database files with:
+
+```bash
+
+$ composer dump-autoload
+
+$ php artisan migrate --seed
+
+```
 
 ## Contributing
 
