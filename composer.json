@@ -1,0 +1,33 @@
+{
+    "name": "meccado/article-admin",
+    "type": "library",
+    "description": "Laravel Admin Content Managenent for Articles",
+    "keywords": [
+        "Moeketsi",
+        "Article Admin"
+    ],
+    "homepage": "https://github.com/Meccado/article-admin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Meccado",
+            "email": "tsw603gp@gmail.com",
+            "homepage": "https://github.com/Meccado/article-admin",
+            "role": "Developer"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Meccado\\ArticleAdmin\\": "src"
+        }
+    },
+    "require": {
+      "illuminate/support": "~5.1",
+      "php" : "~5.5|~7.0",
+      "laravelcollective/html": "^5.2",
+      "intervention/image": "^2.3",
+      "unisharp/laravel-ckeditor": "^4.5",
+      "unisharp/laravel-filemanager": "^1.5",
+      "meccado/acl-admin-control-panel": "^1.0"
+    }
+}
