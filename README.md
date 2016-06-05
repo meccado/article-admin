@@ -12,6 +12,15 @@ Via Composer
 ``` bash
 $ composer require meccado/article-admin
 ```
+To register the Service Provider edit **config/app.php** file and add to providers array:
+
+```php
+ /*
+  *  Service Provider
+  */
+  Meccado\ArticleAdmin\ArticleAdminServiceProvider::class,
+
+```
 
 
 ## Contributing

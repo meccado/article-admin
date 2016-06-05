@@ -84,6 +84,7 @@ class ArticleAdminServiceProvider extends ServiceProvider
       $this->app->register('Intervention\Image\ImageServiceProvider');
       $this->app->register('Unisharp\Ckeditor\ServiceProvider');
       $this->app->register('Unisharp\Laravelfilemanager\LaravelFilemanagerServiceProvider');
+      $this->app->register('Meccado\AclAdminControlPanel\AclAdminControlPanelServiceProvider');
 
       // Register dependancy aliases
       $this->app->booting(function()
