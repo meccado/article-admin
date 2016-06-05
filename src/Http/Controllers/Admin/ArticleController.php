@@ -52,7 +52,6 @@ class ArticleController extends Controller
     $tag_items = Tag::lists('name', 'id')->toarray();
     $categories_selected = [];
     $tags_selected = [];
-    dd("Here");
     return view('admin.articles.store', compact('category_items', 'categories_selected', 'tag_items', 'tags_selected'));
   }
 
