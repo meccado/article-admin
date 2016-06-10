@@ -35,8 +35,8 @@ class ArticleController extends Controller
   public function index()
   {
     $articles =  $this->articles->latest('published_at')
-                                ->published()
-                                ->get();
+    ->published()
+    ->get();
     //$articles = Article::with('Categories')->get();
     return view('admin.articles.index',['articles' => $articles]);
   }
@@ -159,6 +159,61 @@ class ArticleController extends Controller
     }
     return \Redirect::to('admin/articles')
     ->with('flash_message', 'Something went wrong, please try again');
+  }
+
+  /**
+  * Display the specified resource.
+  *
+  * @param  int  $id
+  * @return \Illuminate\Http\Response
+  */
+  public function getUpload($id)
+  {
+    $article = $this->articles->findOrFail($id);
+    return \View::make('admin.articles.upload')->with(compact('article'));
+  }
+
+  /**
+  * Update the specified resource in storage.
+  *
+  * @param  \Illuminate\Http\Request  $request
+  * @return \Illuminate\Http\Response
+  */
+  public function upload(ImageFormRequest $request, $id)
+  {
+    if(Input::hasFile('file')) {
+      $file = $request->file('file');
+      $filename = uniqid() . $file->getClientOriginalName();
+      $original = public_path('assets\images\articles\original\\'.$filename);
+      $thumbnail = public_path('assets\images\articles\thumbnail\\'.$filename);
+      $resize = public_path('assets\images\articles\resize\\'.$filename);
+      if (!File::exists(public_path('assets\images\articles\original')))
+      {
+        File::makeDirectory(public_path('assets\images\articles\original'), $mode = 0777, true, true);
+        if (!File::exists(public_path('assets\images\articles\thumbnail'))){File::makeDirectory(public_path('assets\images\articles\thumbnail'), $mode = 0777, true, true);}
+        if (!File::exists(public_path('assets\images\articles\resize'))){File::makeDirectory(public_path('assets\images\articles\resize'), $mode = 0777, true, true);}
+      }
+      // upload new image
+      $img = Image::make($file->getRealPath());
+      $img->save($original);// original
+      $img->fit('150', '150'); // thumbnail (grab)
+      $img->save($thumbnail);
+      $img->resize('300', '300'); // resize and set true if you want proportional image resize
+      $img->save($resize);
+      $img->destroy();
+      $article = $this->articles->find($id);
+      $image = $article->images()->create([
+        'article_id'   => $request->input('article_id'),
+        'file_name'     => $filename,
+        'file_size'     => $file->getClientSize(),
+        'file_mime'     => $file->getClientMimeType(),
+        'file_path'     => '/assets/images/articles/original/'.$filename,
+        'created_by'    => \Auth::user() ? \Auth::user()->id : 0,
+      ]);
+      return response()->json($image, 200);
+    }else{
+      return response()->json(false, 200);
+    }
   }
 
 }

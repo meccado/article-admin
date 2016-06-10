@@ -15,6 +15,12 @@
             <tr>
                 <th>{{$article->id}}</th>
                 <td>
+                    <div class="col-md-1">
+                        <a href="{{route('admin.articles.image-upload',['id'=>$article->id])}}"
+                            data-toggle="tooltip"
+                            data-original-title="{!! trans('article.images-upload-btnupload') !!}"
+                            class="btn btn-default btn-flat  pull-right "><i class="fa fa-upload"></i></a>
+                    </div>
                     {{$article->name}}
                 </td>
                 {{-- <td>{{$article->content}}</td> --}}

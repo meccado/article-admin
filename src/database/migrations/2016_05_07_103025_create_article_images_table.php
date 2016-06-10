@@ -14,7 +14,7 @@ class CreateArticleImagesTable extends Migration
     {
         Schema::create('article_images', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('articles_id');
+            $table->integer('article_id');
             $table->string('file_name');
             $table->string('file_size');
             $table->string('file_mime');

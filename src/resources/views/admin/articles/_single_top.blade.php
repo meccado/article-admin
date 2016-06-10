@@ -1,6 +1,6 @@
 <div class="col-md-12">
    <ul id="image-lists" style="margin: 0; padding: 0;">
-        @if(count($article->images) > 0)
+        @if(isset($article->images))
           @foreach($article->images as $image)
               <li style="margin: 0; padding: 0; list-style: none; float: left; padding-right: 10px ">
                   <a href="{{asset($image->file_path)}}" data-lightbox="article" target="_blank">

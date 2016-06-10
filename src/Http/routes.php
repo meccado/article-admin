@@ -9,7 +9,8 @@ Route::group(['namespace' 	=> 'App\Http\Controllers',
                       		Route::resource('tags', 'TagController', ['only' => ['index', 'show','create', 'store', 'edit', 'update', 'destroy']]);
                       		Route::resource('articles', 'ArticleController', ['only' => ['index', 'show','create', 'store', 'edit', 'update', 'destroy']]);
                       		Route::resource('categories', 'CategoryController', ['only' => ['index', 'show','create', 'store', 'edit', 'update', 'destroy']]);
-
+													Route::post('articles/{articles}/upload', ['as' => 'admin.articles.upload', 'uses' => 'ArticleController@upload']);
+													Route::get('articles/{articles}/image-upload', ['as' => 'admin.articles.image-upload', 'uses' => 'ArticleController@getUpload']);
 			});
 });
 
