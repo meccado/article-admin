@@ -5,7 +5,9 @@ Route::group(['namespace' 	=> 'App\Http\Controllers',
  							], function(){
 			//'prefix'=>'api/v1',
 			Route::group(['prefix' =>  'admin',
-	 					 				'namespace' 	=> 'Admin'], function(){
+                          'middleware' 	=> ['auth', 'admin'],
+	 					 'namespace' 	=> 'Admin'], 
+                         function(){
                       		Route::resource('tags', 'TagController', ['only' => ['index', 'show','create', 'store', 'edit', 'update', 'destroy']]);
                       		Route::resource('articles', 'ArticleController', ['only' => ['index', 'show','create', 'store', 'edit', 'update', 'destroy']]);
                       		Route::resource('categories', 'CategoryController', ['only' => ['index', 'show','create', 'store', 'edit', 'update', 'destroy']]);
