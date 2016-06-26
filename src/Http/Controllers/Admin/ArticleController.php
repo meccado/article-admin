@@ -184,14 +184,14 @@ class ArticleController extends Controller
     if(Input::hasFile('file')) {
       $file = $request->file('file');
       $filename = uniqid() . $file->getClientOriginalName();
-      $original = public_path('assets\images\articles\original\\'.$filename);
-      $thumbnail = public_path('assets\images\articles\thumbnail\\'.$filename);
-      $resize = public_path('assets\images\articles\resize\\'.$filename);
-      if (!File::exists(public_path('assets\images\articles\original')))
+      $original ='assets\images\articles\original\\'.$filename;
+      $thumbnail = 'assets\images\articles\thumbnail\\'.$filename;
+      $resize = 'assets\images\articles\resize\\'.$filename;
+      if (!File::exists('assets\images\articles\original'))
       {
-        File::makeDirectory(public_path('assets\images\articles\original'), $mode = 0777, true, true);
-        if (!File::exists(public_path('assets\images\articles\thumbnail'))){File::makeDirectory(public_path('assets\images\articles\thumbnail'), $mode = 0777, true, true);}
-        if (!File::exists(public_path('assets\images\articles\resize'))){File::makeDirectory(public_path('assets\images\articles\resize'), $mode = 0777, true, true);}
+        File::makeDirectory('assets\images\articles\original', $mode = 0777, true, true);
+        if (!File::exists('assets\images\articles\thumbnail')){File::makeDirectory('assets\images\articles\thumbnail', $mode = 0777, true, true);}
+        if (!File::exists('assets\images\articles\resize')){File::makeDirectory('assets\images\articles\resize', $mode = 0777, true, true);}
       }
       // upload new image
       $img = Image::make($file->getRealPath());
@@ -207,7 +207,7 @@ class ArticleController extends Controller
         'file_name'     => $filename,
         'file_size'     => $file->getClientSize(),
         'file_mime'     => $file->getClientMimeType(),
-        'file_path'     => '/assets/images/articles/original/'.$filename,
+        'file_path'     => 'assets/images/articles/original/'.$filename,
         'created_by'    => \Auth::user() ? \Auth::user()->id : 0,
       ]);
       return response()->json($image, 200);
