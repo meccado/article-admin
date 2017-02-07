@@ -10,7 +10,7 @@
 Via Composer
 
 ``` bash
-$ composer require meccado/article-admin
+$ composer require "meccado/article-admin:~1.0.0"
 ```
 To register the Service Provider edit **config/app.php** file and add to providers array:
 
@@ -19,15 +19,15 @@ To register the Service Provider edit **config/app.php** file and add to provide
   *  Service Provider
   */
   Meccado\ArticleAdmin\ArticleAdminServiceProvider::class,
-
 ```
 
 Publish files with:
 
 ```bash
-
+#In Laravel =>5.3.x or =>5.4.x or hiegher first run:
+$ php artisan make:auth
+#then
 $ php artisan vendor:publish  --force
-
 ```
 
 Migrate & Seed database files with:
@@ -38,6 +38,23 @@ $ composer dump-autoload
 
 $ php artisan migrate --seed
 
+```
+##### Admin Login Page & Credentials
+
+```php
+Admin Login: http://localhost:8000/admin
+
+Super Admin
+User: super@domain.com
+Password: password
+
+Admin
+User: admin@domain.com
+Password: password
+
+General User
+User: user@gmail.com
+Password: password
 ```
 
 ## Contributing
