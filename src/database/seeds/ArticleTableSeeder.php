@@ -19,7 +19,7 @@ class  ArticleTableSeeder extends Seeder
           'parent_id'          => '0',
           'icon'               => 'fa fa-newspaper-o fa-fw',
           'sort_order'         => '0',
-          'url'                => 'admin/carouarticles',
+          'url'                => 'admin/articles',
       ] );
       $article_dashboard->assign($super_admin_user);
       $article_dashboard->assign($admin_user);
